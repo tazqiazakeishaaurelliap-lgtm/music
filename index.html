@@ -1,132 +1,346 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pemutar Musik Sederhana GitHub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Music Player Modern | GitHub</title>
   
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #a1c4fd, #c2e9fb); /* Background warna gradasi */
+      /* Background gradasi kekinian: perpaduan ungu pastel, biru soft, dan sentuhan magenta */
+      background: linear-gradient(145deg, #c084fc 0%, #60a5fa 45%, #f472b6 100%);
+      background-attachment: fixed;
+      font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Inter', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 20px;
+      /* efek noise halus biar makin modern (optional) */
+      position: relative;
     }
+
+    /* efek grain / tekstur micro untuk kesan premium */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikiIG9wYWNpdHk9IjAuMDYiLz48L3N2Zz4=');
+      background-repeat: repeat;
+      pointer-events: none;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
     .player-card {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-radius: 40px;
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255,255,255,0.3) inset;
+      padding: 28px 24px 32px 24px;
       text-align: center;
-      width: 320px;
+      width: 100%;
+      max-width: 380px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 2;
     }
-    h2 { color: #333; margin-bottom: 5px; }
-    p { color: #777; font-size: 14px; margin-top: 0; }
-    
-    /* Mengatur ukuran pemutar audio bawaan browser */
+
+    .player-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 32px 55px rgba(0, 0, 0, 0.25);
+    }
+
+    h2 {
+      background: linear-gradient(135deg, #2d2b6b, #854d8c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      font-weight: 700;
+      font-size: 1.9rem;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+
+    .subhead {
+      color: #5b5b6e;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: rgba(230, 230, 250, 0.5);
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 40px;
+      backdrop-filter: blur(4px);
+      margin-bottom: 16px;
+    }
+
+    #current-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 16px 0 12px 0;
+      color: #1f1b3c;
+      background: rgba(255,255,240,0.6);
+      padding: 8px 16px;
+      border-radius: 60px;
+      display: inline-block;
+      backdrop-filter: blur(4px);
+      transition: all 0.2s;
+    }
+
+    /* Styling audio player modern */
     audio {
       width: 100%;
-      margin-top: 20px;
-      border-radius: 10px;
+      margin: 10px 0 15px 0;
+      border-radius: 60px;
+      background: #f3f4fc;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
+
+    audio::-webkit-media-controls-panel {
+      background-color: #f9fafc;
+      border-radius: 60px;
+    }
+
     .playlist {
       text-align: left;
-      margin-top: 20px;
-      border-top: 1px solid #eee;
-      padding-top: 15px;
+      margin-top: 25px;
+      border-top: 1.5px solid rgba(128, 128, 160, 0.25);
+      padding-top: 18px;
     }
+
+    .playlist h4 {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      letter-spacing: -0.2px;
+    }
+
+    .playlist h4:before {
+      content: "🎧";
+      font-size: 1.1rem;
+    }
+
+    /* daftar lagu dengan efek modern */
     .song-item {
-      padding: 10px;
-      background: #f9f9f9;
-      margin-bottom: 5px;
-      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(4px);
+      margin-bottom: 8px;
+      border-radius: 28px;
       cursor: pointer;
-      transition: 0.2s;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.5);
+      font-weight: 500;
+      color: #1e1f2c;
+      font-size: 0.9rem;
     }
+
     .song-item:hover {
-      background: #e0f2fe; /* Berubah warna biru muda saat kursor menempel */
+      background: rgba(255, 255, 255, 0.98);
+      transform: scale(1.02);
+      border-color: #c4b5fd;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
+
+    /* nomor lagu lebih stylish */
+    .song-item::before {
+      content: "♪";
+      font-size: 1.2rem;
+      font-weight: normal;
+      color: #8b5cf6;
+      width: 28px;
+      text-align: center;
+    }
+
+    /* menyesuaikan setiap item tanpa mengacuhkan konten */
+    .song-item:nth-child(1)::before { content: "1"; font-weight: bold; font-family: monospace; background: #e0e7ff; width: 28px; border-radius: 30px; }
+    .song-item:nth-child(2)::before { content: "2"; font-weight: bold; background: #e0e7ff; border-radius: 30px; }
+    .song-item:nth-child(3)::before { content: "3"; font-weight: bold; background: #e0e7ff; border-radius: 30px; }
+    .song-item:nth-child(4)::before { content: "4"; font-weight: bold; background: #e0e7ff; border-radius: 30px; }
+    .song-item:nth-child(5)::before { content: "5"; font-weight: bold; background: #e0e7ff; border-radius: 30px; }
+    .song-item:nth-child(6)::before { content: "6"; font-weight: bold; background: #e0e7ff; border-radius: 30px; }
+    .song-item:nth-child(7)::before { content: "7"; font-weight: bold; background: #e0e7ff; border-radius: 30px; }
+    .song-item:nth-child(8)::before { content: "8"; font-weight: bold; background: #e0e7ff; border-radius: 30px; }
+    .song-item:nth-child(9)::before { content: "9"; font-weight: bold; background: #e0e7ff; border-radius: 30px; }
+    .song-item:nth-child(10)::before { content: "10"; font-weight: bold; background: #e0e7ff; border-radius: 30px; }
+
+    /* Tambahan efek shimmer/glow saat diputar (optional) */
+    @keyframes subtlePulse {
+      0% { text-shadow: 0 0 0px rgba(139,92,246,0); }
+      100% { text-shadow: 0 0 5px rgba(139,92,246,0.4); }
+    }
+    .playing-now {
+      background: linear-gradient(120deg, #f8f0ff, #ede9fe);
+      border-left: 5px solid #8b5cf6;
+      font-weight: 600;
+    }
+
+    /* responsif */
+    @media (max-width: 450px) {
+      .player-card {
+        padding: 20px 18px;
+      }
+      .song-item {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+      }
+      #current-title {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="player-card">
-    <h2>Music Player 🎵</h2>
-    <p>Belajar Pemrograman Web (GitHub)</p>
-    
-    <h3 id="current-title">Pilih Lagu di Bawah</h3>
-    
-    <audio id="audio-player" controls></audio>
-
-    <div class="playlist">
-      <h4>Daftar Lagu:</h4>
-      
-      <div class="song-item" onclick="putarLagu('Position - Ariana', 'assets/ariana-grande-positions.mp3')">
-        1. Position - Ariana
-      </div>
-
-      <div class="song-item" onclick="putarLagu('Hindia - Membasuh', 'assets/hindia-membasuh.mp3')">
-        2. Hindia - Membasuh
-      </div>
-
-      <div class="song-item" onclick="putarLagu('Armada - Mau Dibawa Kemana', 'assets/mau-dibawa-kemana-armada.mp3')">
-        3. Armada - Mau Dibawa Kemana
-      </div>
-
-       <div class="song-item" onclick="putarLagu('Kahitna - Titik nadir', 'assets/KAHITNA-Titik Nadir.mp3')">
-        4. Kahitna - Titik nadir
-      </div>
-
-      <div class="song-item" onclick="putarLagu('Kahitna - Mantan Terindah', 'assets/KAHITNA-MANTAN TERINDAH.mp3')">
-        5. Kahitna - Mantan Terindah
-      </div>
-
-      <div class="song-item" onclick="putarLagu('Marcell - Firasat', 'assets/MARCELL-Firasat.mp3')">
-        6. Marcell - Firasat
-      </div>
-
-      <div class="song-item" onclick="putarLagu('ACHA SEPTRIASA - IRWANSYAH - My Heart', 'assets/ACHA SEPTRIASA - IRWANSYAH-My Heart.mp3')">
-        7. ACHA SEPTRIASA - IRWANSYAH - My Heart
-      </div>
-
-       <div class="song-item" onclick="putarLagu('Hello - Ular Berbisa', 'assets/Hello - Ular Berbisa.mp3')">
-        8. Hello - Ular Berbisa
-      </div>
-
-       <div class="song-item" onclick="putarLagu('Rossa - Tak Sanggup Lagi', 'assets/Rossa - Tak Sanggup Lagi.mp3')">
-        9. Rossa - Tak Sanggup Lagi
-      </div>
-      
-      <div class="song-item" onclick="putarLagu('Bersenja Gurau - Raim Laode', 'assets/Bersenja Gurau - Raim Laode.mp3')">
-        9. Bersenja Gurau - Raim Laode
-      </div>
-      
-      
-      </div>
+<div class="player-card">
+  <h2>✨ Nebula Player</h2>
+  <div class="subhead">✨ stream mellow · modern vibe</div>
   
+  <div id="current-title">🎵 pilih lagu favoritmu</div>
+  
+  <audio id="audio-player" controls preload="metadata"></audio>
 
-  <script>
-    // Mengambil elemen HTML berdasarkan ID-nya
-    const player = document.getElementById('audio-player');
-    const titleDisplay = document.getElementById('current-title');
+  <div class="playlist">
+    <h4>Playlist kekinian</h4>
+    
+    <div class="song-item" data-title="Position - Ariana" data-src="assets/ariana-grande-positions.mp3">
+      1. Position - Ariana Grande
+    </div>
 
-    // Fungsi yang otomatis jalan saat daftar lagu diklik
-    function putarLagu(judul, lokasiFile) {
-      // 1. Mengubah teks judul di layar sesuai lagu yang diklik
-      titleDisplay.innerText = judul;
-      
-      // 2. Mengubah sumber file audio (.src) ke jalur folder lokal/GitHub
-      player.src = lokasiFile;
-      
-      // 3. Memuat ulang pemutar musik dengan file baru
-      player.load();
-      
-      // 4. Memutar lagu secara otomatis
-      player.play();
+    <div class="song-item" data-title="Hindia - Membasuh" data-src="assets/hindia-membasuh.mp3">
+      2. Hindia - Membasuh
+    </div>
+
+    <div class="song-item" data-title="Armada - Mau Dibawa Kemana" data-src="assets/mau-dibawa-kemana-armada.mp3">
+      3. Armada - Mau Dibawa Kemana
+    </div>
+
+    <div class="song-item" data-title="Kahitna - Titik Nadir" data-src="assets/KAHITNA-Titik Nadir.mp3">
+      4. Kahitna - Titik Nadir
+    </div>
+
+    <div class="song-item" data-title="Kahitna - Mantan Terindah" data-src="assets/KAHITNA-MANTAN TERINDAH.mp3">
+      5. Kahitna - Mantan Terindah
+    </div>
+
+    <div class="song-item" data-title="Marcell - Firasat" data-src="assets/MARCELL-Firasat.mp3">
+      6. Marcell - Firasat
+    </div>
+
+    <div class="song-item" data-title="ACHA SEPTRIASA - IRWANSYAH - My Heart" data-src="assets/ACHA SEPTRIASA - IRWANSYAH-My Heart.mp3">
+      7. Acha & Irwansyah - My Heart
+    </div>
+
+    <div class="song-item" data-title="Hello - Ular Berbisa" data-src="assets/Hello - Ular Berbisa.mp3">
+      8. Hello - Ular Berbisa
+    </div>
+
+    <div class="song-item" data-title="Rossa - Tak Sanggup Lagi" data-src="assets/Rossa - Tak Sanggup Lagi.mp3">
+      9. Rossa - Tak Sanggup Lagi
+    </div>
+
+    <div class="song-item" data-title="Bersenja Gurau - Raim Laode" data-src="assets/Bersenja Gurau - Raim Laode.mp3">
+      10. Raim Laode - Bersenja Gurau
+    </div>
+
+    </div>
+
+<script>
+  // ambil elemen
+  const player = document.getElementById('audio-player');
+  const titleDisplay = document.getElementById('current-title');
+  const allSongs = document.querySelectorAll('.song-item');
+  
+  // variable untuk mengetahui lagu yang sedang aktif (opsional highlight)
+  let currentActiveItem = null;
+  
+  // fungsi play lagu yang lebih modern + highlight visual
+  function putarLagu(judul, lokasiFile, clickedElement) {
+    // update tampilan judul
+    titleDisplay.innerHTML = `🎶 ${judul}`;
+    
+    // set sumber audio
+    player.src = lokasiFile;
+    player.load();
+    
+    // mainkan audio (akan berjalan otomatis setelah load, tapi butuh interaksi? tetap)
+    player.play().catch(e => {
+      // Browsers kadang menolak autoplay karena kebijakan, kita tampilkan info opsional 
+      console.log("Autoplay mungkin butuh interaksi, klik tombol play manual");
+      titleDisplay.innerHTML = `🎧 ${judul} (klik play)`;
+    });
+    
+    // Hapus efek highlight dari item sebelumnya
+    if (currentActiveItem) {
+      currentActiveItem.classList.remove('playing-now');
     }
-  </script>
+    // Tambahkan class highlight ke lagu yg sedang diputar
+    if (clickedElement) {
+      clickedElement.classList.add('playing-now');
+      currentActiveItem = clickedElement;
+    }
+  }
+  
+  // pasang event listener untuk setiap lagu di playlist
+  allSongs.forEach(song => {
+    song.addEventListener('click', (e) => {
+      // Ambil data dari atribut data-title dan data-src
+      const judulLagu = song.getAttribute('data-title');
+      const fileLagu = song.getAttribute('data-src');
+      
+      if (judulLagu && fileLagu) {
+        putarLagu(judulLagu, fileLagu, song);
+      } else {
+        // fallback kalau ada yang lupa atribut, tapi di html sudah ada semua
+        console.warn('data attribute tidak lengkap', song);
+      }
+    });
+  });
+  
+  // Optional: ketika lagu selesai, hapus highlight playing-now? 
+  // bisa ditambahkan agar UX lebih rapi
+  player.addEventListener('ended', () => {
+    if (currentActiveItem) {
+      // kita tidak langsung hapus highlight, bisa biarkan dulu sampai user pilih lagu lain
+      // tapi opsi bagus: hanya tampilkan pesan "lagu selesai"
+      titleDisplay.innerHTML = "🎵 putar lagu selanjutnya~";
+    }
+  });
+  
+  // Jika audio mulai diputar, update judul tetap konsisten (tambahan)
+  player.addEventListener('play', () => {
+    if (player.src && titleDisplay.innerText.includes('pilih lagu')) {
+      // sangat jarang terjadi, tapi tidak bermasalah
+    }
+  });
+  
+  // inisiasi default: tidak ada lagu dipilih, player tanpa src
+  // kosongkan source awal supaya tidak error
+  player.src = "";
+  
+  // Tambahan efek kecil: saat lagu berubah karena error atau load, jaga konsistensi
+  player.addEventListener('loadeddata', () => {
+    // jika judul saat ini masih placeholder, kita bisa biarkan saja
+    if (player.src && titleDisplay.innerText === "🎵 pilih lagu favoritmu") {
+      // tidak perlu, karena fungsi putarLagu sudah mengupdate judul
+    }
+  });
+</script>
 </body>
 </html>
