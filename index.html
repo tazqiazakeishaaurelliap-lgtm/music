@@ -21,30 +21,27 @@
             align-items: center;
             padding: 1.5rem;
             background: linear-gradient(145deg, #D7CCC8, #A1887F, #6B1A2A);
-            position: relative;
         }
 
-        body::before,
-        body::after {
-            display: none;
-        }
-
+        /* ── PLAYER CARD ── semua warna cokelat-burgundy */
         .player-card {
             max-width: 480px;
             width: 100%;
-            background: rgba(245, 240, 235, 0.88);
+            background: #F5EDE8; /* cokelat sangat muda/cream */
             backdrop-filter: blur(28px);
-            border-radius: 3rem;
+            border-radius: 3.5rem;
             padding: 2rem 1.8rem 1.8rem;
-            box-shadow: 0 25px 50px rgba(62, 39, 35, 0.25);
-            border: 1px solid rgba(139, 42, 58, 0.30);
-            transition: transform 0.25s;
+            box-shadow: 0 30px 60px rgba(62, 39, 35, 0.25);
+            border: 1px solid rgba(107, 26, 42, 0.15);
+            transition: transform 0.25s, box-shadow 0.3s;
         }
 
         .player-card:hover {
             transform: translateY(-4px);
+            box-shadow: 0 40px 70px rgba(62, 39, 35, 0.30);
         }
 
+        /* ── HEADER ── */
         .player-header {
             display: flex;
             justify-content: space-between;
@@ -58,10 +55,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            background: linear-gradient(135deg, #6B1A2A, #4A0E1A);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+            color: #6B1A2A; /* burgundy */
         }
 
         .player-header h1 i {
@@ -71,12 +65,12 @@
 
         .badge {
             background: rgba(107, 26, 42, 0.10);
-            padding: 0.3rem 1rem;
+            padding: 0.3rem 1.2rem;
             border-radius: 60px;
             font-size: 0.65rem;
             font-weight: 600;
             color: #6B1A2A;
-            border: 1px solid rgba(107, 26, 42, 0.15);
+            border: 1px solid rgba(107, 26, 42, 0.12);
             display: flex;
             align-items: center;
             gap: 6px;
@@ -88,18 +82,20 @@
             color: #6B1A2A;
         }
 
+        /* ── NOW PLAYING ── */
         .now-playing-area {
             background: rgba(215, 204, 200, 0.50);
-            border-radius: 2rem;
-            padding: 1.2rem 1.4rem;
+            border-radius: 2.5rem;
+            padding: 1.2rem 1.6rem;
             margin-bottom: 1.2rem;
-            border: 1px solid rgba(139, 42, 58, 0.25);
+            border: 1px solid rgba(107, 26, 42, 0.12);
             backdrop-filter: blur(6px);
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, background 0.3s;
         }
 
         .now-playing-area:hover {
-            border-color: rgba(107, 26, 42, 0.30);
+            border-color: rgba(107, 26, 42, 0.25);
+            background: rgba(215, 204, 200, 0.65);
         }
 
         .now-label {
@@ -131,26 +127,23 @@
         }
 
         .track-title span {
-            background: linear-gradient(135deg, #3E2723, #6B1A2A);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+            color: #3E2723; /* cokelat tua */
             word-break: break-word;
             line-height: 1.4;
         }
 
         .disc-icon {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             background: radial-gradient(circle at 35% 35%, #D7CCC8, #6B1A2A);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 0 0 2px #6B1A2A, 0 0 0 5px rgba(107, 26, 42, 0.20);
-            font-size: 1.1rem;
-            color: white;
+            box-shadow: 0 0 0 2px #6B1A2A, 0 0 0 6px rgba(107, 26, 42, 0.15);
+            font-size: 1.2rem;
+            color: #F5EDE8;
             transition: box-shadow 0.3s;
         }
 
@@ -167,11 +160,12 @@
             }
         }
 
+        /* ── AUDIO ── */
         audio {
             width: 100%;
             margin: 0.6rem 0 0.4rem;
             border-radius: 60px;
-            height: 44px;
+            height: 46px;
         }
 
         audio::-webkit-media-controls-panel {
@@ -196,20 +190,21 @@
             font-weight: 500;
         }
 
+        /* ── CONTROLS ROW ── */
         .controls-row {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin: 8px 0 14px;
+            gap: 14px;
+            margin: 10px 0 16px;
         }
 
         .ctrl-btn {
-            background: rgba(107, 26, 42, 0.08);
-            border: 1px solid rgba(107, 26, 42, 0.15);
+            background: rgba(107, 26, 42, 0.06);
+            border: 1px solid rgba(107, 26, 42, 0.10);
             color: #3E2723;
             font-weight: 600;
-            padding: 0.65rem 1.2rem;
-            border-radius: 60px;
+            padding: 0.7rem 1.4rem;
+            border-radius: 80px;
             font-size: 0.8rem;
             cursor: pointer;
             display: inline-flex;
@@ -230,11 +225,11 @@
         }
 
         .ctrl-btn:hover {
-            background: rgba(107, 26, 42, 0.14);
-            border-color: rgba(107, 26, 42, 0.30);
+            background: rgba(107, 26, 42, 0.12);
+            border-color: rgba(107, 26, 42, 0.25);
             transform: translateY(-2px);
             gap: 14px;
-            box-shadow: 0 8px 20px rgba(107, 26, 42, 0.08);
+            box-shadow: 0 8px 24px rgba(107, 26, 42, 0.08);
         }
 
         .ctrl-btn:hover i {
@@ -245,27 +240,28 @@
             transform: scale(0.94);
         }
 
+        /* ── SEARCH ── */
         .search-container {
-            margin: 0.8rem 0 1rem;
+            margin: 0.8rem 0 1.2rem;
             position: relative;
         }
 
         .search-container i {
             position: absolute;
-            left: 18px;
+            left: 20px;
             top: 50%;
             transform: translateY(-50%);
             color: #6B1A2A;
             font-size: 0.85rem;
-            opacity: 0.7;
+            opacity: 0.6;
         }
 
         #search-input {
             width: 100%;
-            background: rgba(215, 204, 200, 0.40);
-            border: 1px solid rgba(107, 26, 42, 0.15);
-            border-radius: 60px;
-            padding: 0.8rem 1rem 0.8rem 2.8rem;
+            background: rgba(215, 204, 200, 0.35);
+            border: 1px solid rgba(107, 26, 42, 0.10);
+            border-radius: 80px;
+            padding: 0.85rem 1.2rem 0.85rem 3rem;
             font-size: 0.85rem;
             color: #3E2723;
             font-weight: 500;
@@ -275,16 +271,17 @@
         }
 
         #search-input:focus {
-            border-color: rgba(107, 26, 42, 0.40);
-            box-shadow: 0 0 0 4px rgba(107, 26, 42, 0.06);
-            background: rgba(215, 204, 200, 0.60);
+            border-color: rgba(107, 26, 42, 0.30);
+            box-shadow: 0 0 0 6px rgba(107, 26, 42, 0.04);
+            background: rgba(215, 204, 200, 0.55);
         }
 
         #search-input::placeholder {
-            color: rgba(62, 39, 35, 0.35);
+            color: rgba(62, 39, 35, 0.30);
             font-weight: 400;
         }
 
+        /* ── PLAYLIST ── */
         .playlist-section {
             margin-top: 0.2rem;
         }
@@ -297,7 +294,7 @@
             font-weight: 700;
             color: #6B1A2A;
             margin-bottom: 0.8rem;
-            padding-left: 4px;
+            padding-left: 6px;
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
@@ -312,7 +309,7 @@
             overflow-y: auto;
             padding-right: 4px;
             scrollbar-width: thin;
-            scrollbar-color: rgba(107, 26, 42, 0.25) transparent;
+            scrollbar-color: rgba(107, 26, 42, 0.20) transparent;
         }
 
         .playlist-list::-webkit-scrollbar {
@@ -325,26 +322,27 @@
         }
 
         .playlist-list::-webkit-scrollbar-thumb {
-            background: rgba(107, 26, 42, 0.25);
+            background: rgba(107, 26, 42, 0.20);
             border-radius: 10px;
         }
 
         .playlist-list::-webkit-scrollbar-thumb:hover {
-            background: rgba(107, 26, 42, 0.40);
+            background: rgba(107, 26, 42, 0.35);
         }
 
+        /* ── SONG ITEM ── */
         .song-item {
             display: flex;
             align-items: center;
             gap: 14px;
-            padding: 0.7rem 1rem 0.7rem 1.2rem;
-            background: rgba(245, 240, 235, 0.40);
+            padding: 0.8rem 1.2rem 0.8rem 1.4rem;
+            background: rgba(215, 204, 200, 0.25);
             backdrop-filter: blur(4px);
-            margin-bottom: 8px;
-            border-radius: 60px;
+            margin-bottom: 10px;
+            border-radius: 80px;
             cursor: pointer;
             transition: all 0.25s ease;
-            border: 1px solid rgba(107, 26, 42, 0.06);
+            border: 1px solid rgba(107, 26, 42, 0.05);
             color: #3E2723;
             font-weight: 500;
             font-size: 0.82rem;
@@ -370,18 +368,18 @@
         .song-item:hover {
             background: rgba(107, 26, 42, 0.08);
             border-color: rgba(107, 26, 42, 0.15);
-            transform: translateX(4px);
+            transform: translateX(6px);
             color: #1A0D0A;
         }
 
         .song-item:hover i {
-            color: rgba(107, 26, 42, 0.70);
+            color: rgba(107, 26, 42, 0.60);
         }
 
         .song-item.playing {
-            background: linear-gradient(95deg, rgba(107, 26, 42, 0.12), rgba(107, 26, 42, 0.04));
-            border-color: rgba(107, 26, 42, 0.25);
-            box-shadow: 0 0 20px rgba(107, 26, 42, 0.04);
+            background: linear-gradient(95deg, rgba(107, 26, 42, 0.10), rgba(107, 26, 42, 0.03));
+            border-color: rgba(107, 26, 42, 0.20);
+            box-shadow: 0 0 30px rgba(107, 26, 42, 0.03);
             color: #1A0D0A;
         }
 
@@ -395,8 +393,8 @@
             left: -1px;
             top: 20%;
             height: 60%;
-            width: 3px;
-            background: linear-gradient(180deg, #6B1A2A, #4A0E1A);
+            width: 4px;
+            background: #6B1A2A;
             border-radius: 4px;
         }
 
@@ -404,14 +402,15 @@
             display: none;
         }
 
+        /* ── NO RESULTS ── */
         .no-results {
-            background: rgba(215, 204, 200, 0.30);
-            border-radius: 60px;
+            background: rgba(215, 204, 200, 0.25);
+            border-radius: 80px;
             padding: 1.2rem;
             text-align: center;
             color: rgba(62, 39, 35, 0.50);
             font-size: 0.8rem;
-            border: 1px dashed rgba(107, 26, 42, 0.15);
+            border: 1px dashed rgba(107, 26, 42, 0.10);
             display: none;
             margin-top: 0.5rem;
         }
@@ -419,13 +418,14 @@
         .no-results i {
             color: #6B1A2A;
             margin-right: 8px;
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
+        /* ── FOOTER ── */
         footer {
             font-size: 0.6rem;
             text-align: center;
-            margin-top: 1.6rem;
+            margin-top: 1.8rem;
             color: rgba(62, 39, 35, 0.30);
             letter-spacing: 0.5px;
             display: flex;
@@ -439,10 +439,11 @@
             font-size: 0.7rem;
         }
 
+        /* ── RESPONSIVE ── */
         @media (max-width: 480px) {
             .player-card {
                 padding: 1.5rem 1.2rem 1.4rem;
-                border-radius: 2.2rem;
+                border-radius: 2.5rem;
             }
 
             .player-header h1 {
@@ -453,7 +454,7 @@
             }
             .badge {
                 font-size: 0.55rem;
-                padding: 0.2rem 0.7rem;
+                padding: 0.2rem 0.8rem;
             }
 
             .track-title {
@@ -461,9 +462,9 @@
                 gap: 10px;
             }
             .disc-icon {
-                width: 34px;
-                height: 34px;
-                font-size: 0.9rem;
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
             }
 
             .ctrl-btn {
@@ -478,7 +479,7 @@
 
             .song-item {
                 font-size: 0.75rem;
-                padding: 0.6rem 0.8rem 0.6rem 1rem;
+                padding: 0.6rem 1rem 0.6rem 1.2rem;
                 gap: 10px;
             }
             .song-item i {
@@ -488,15 +489,15 @@
 
             #search-input {
                 font-size: 0.8rem;
-                padding: 0.7rem 0.9rem 0.7rem 2.5rem;
+                padding: 0.7rem 1rem 0.7rem 2.8rem;
             }
             .search-container i {
-                left: 14px;
+                left: 16px;
                 font-size: 0.75rem;
             }
 
             .now-playing-area {
-                padding: 0.9rem 1rem;
+                padding: 0.9rem 1.2rem;
             }
         }
 
