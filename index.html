@@ -20,7 +20,6 @@
             justify-content: center;
             align-items: center;
             padding: 1.5rem;
-            /* gradien cokelat → burgundy */
             background: linear-gradient(145deg, #D7CCC8, #A1887F, #6B1A2A);
             position: relative;
         }
@@ -30,7 +29,6 @@
             display: none;
         }
 
-        /* ── PLAYER CARD ── */
         .player-card {
             max-width: 480px;
             width: 100%;
@@ -47,7 +45,6 @@
             transform: translateY(-4px);
         }
 
-        /* ── HEADER ── */
         .player-header {
             display: flex;
             justify-content: space-between;
@@ -91,7 +88,6 @@
             color: #6B1A2A;
         }
 
-        /* ── NOW PLAYING ── */
         .now-playing-area {
             background: rgba(215, 204, 200, 0.50);
             border-radius: 2rem;
@@ -171,7 +167,6 @@
             }
         }
 
-        /* ── AUDIO ── */
         audio {
             width: 100%;
             margin: 0.6rem 0 0.4rem;
@@ -201,7 +196,6 @@
             font-weight: 500;
         }
 
-        /* ── CONTROLS ROW ── */
         .controls-row {
             display: flex;
             justify-content: center;
@@ -251,7 +245,6 @@
             transform: scale(0.94);
         }
 
-        /* ── SEARCH ── */
         .search-container {
             margin: 0.8rem 0 1rem;
             position: relative;
@@ -292,7 +285,6 @@
             font-weight: 400;
         }
 
-        /* ── PLAYLIST ── */
         .playlist-section {
             margin-top: 0.2rem;
         }
@@ -341,7 +333,6 @@
             background: rgba(107, 26, 42, 0.40);
         }
 
-        /* ── SONG ITEM ── */
         .song-item {
             display: flex;
             align-items: center;
@@ -413,7 +404,6 @@
             display: none;
         }
 
-        /* ── NO RESULTS ── */
         .no-results {
             background: rgba(215, 204, 200, 0.30);
             border-radius: 60px;
@@ -432,7 +422,6 @@
             opacity: 0.6;
         }
 
-        /* ── FOOTER ── */
         footer {
             font-size: 0.6rem;
             text-align: center;
@@ -450,7 +439,6 @@
             font-size: 0.7rem;
         }
 
-        /* ── RESPONSIVE ── */
         @media (max-width: 480px) {
             .player-card {
                 padding: 1.5rem 1.2rem 1.4rem;
@@ -535,13 +523,11 @@
 
     <div class="player-card">
 
-        <!-- HEADER -->
         <div class="player-header">
             <h1><i class="fas fa-headphones-simple"></i> Music</h1>
             <div class="badge"><i class="fas fa-waveform"></i> burgundy · warm</div>
         </div>
 
-        <!-- NOW PLAYING -->
         <div class="now-playing-area">
             <div class="now-label"><i class="fas fa-circle-play"></i> now playing</div>
             <div class="track-title">
@@ -550,16 +536,13 @@
             </div>
         </div>
 
-        <!-- AUDIO -->
         <audio id="audio-player" controls preload="metadata"></audio>
 
-        <!-- CONTROLS -->
         <div class="controls-row">
             <button id="prev-button" class="ctrl-btn"><i class="fas fa-backward-step"></i> Sebelum</button>
             <button id="next-button" class="ctrl-btn"><i class="fas fa-forward-step"></i> Selanjutnya</button>
         </div>
 
-        <!-- PLAYLIST -->
         <div class="playlist-section">
             <div class="playlist-header"><i class="fas fa-list-music"></i> Playlist</div>
 
@@ -589,7 +572,7 @@
                 <div class="song-item" data-title="Virgoun - Orang Yang Sama" data-src="assets/Virgoun - Orang Yang Sama.mp3.mp3"><i class="fas fa-music"></i><span class="song-title">Virgoun - Orang Yang Sama</span></div>
                 <div class="song-item" data-title="Sheila on 7 - Bila Kau Tak Disampingku" data-src="assets/Sheila on 7 - Bila Kau Tak Disampingku.mp3"><i class="fas fa-music"></i><span class="song-title">Sheila on 7 - Bila Kau Tak Disampingku</span></div>
                 <div class="song-item" data-title="Sal Priadi - Kita Usahakan Rumah Itu" data-src="assets/Sal Priadi - Kita Usahakan Rumah Itu.mp3"><i class="fas fa-music"></i><span class="song-title">Sal Priadi - Kita Usahakan Rumah Itu</span></div>
-                <div class="song-item" data-title="Glenn Fredly - Kasih Putih" data-src="assets/Glenn Fredly - Kasih Putih.mp3"><i class="fas fa-music"></i><span class="song-title">Glenn Fredly - Kasih Putih</span></div>
+                <div class="song-item" data-title="Glenn Fredly - Kasih Putih" data-src="assets//Glenn Fredly - Kasih Putih.mp3"><i class="fas fa-music"></i><span class="song-title">/Glenn Fredly - Kasih Putih</span></div>
             </div>
 
             <div id="no-results-msg" class="no-results"><i class="fas fa-binoculars"></i>Oops! lagu yang kamu cari tidak tersedia.</div>
@@ -622,7 +605,6 @@
             let currentIdx = -1;
             let activeItem = null;
 
-            // ── DISC SPIN ──
             function setDiscSpin(playing) {
                 if (playing) disc.classList.add('rotate');
                 else disc.classList.remove('rotate');
@@ -638,7 +620,6 @@
                 }
             });
 
-            // ── SEARCH / FILTER ──
             function filterSongs() {
                 const keyword = searchInput.value.trim().toLowerCase();
                 let visible = 0;
@@ -659,7 +640,6 @@
                 filterSongs();
             }
 
-            // ── NAVIGASI HANYA LAGU YANG TERLIHAT ──
             function getVisibleSongs() {
                 return playlist.filter(s => !s.element.classList.contains('hidden'));
             }
@@ -682,7 +662,6 @@
                 return visible[prevPos].index;
             }
 
-            // ── PLAY TRACK ──
             function playTrack(index) {
                 if (index < 0 || index >= playlist.length) {
                     titleSpan.innerHTML = "🏁 Akhir playlist · pilih lagu";
@@ -716,7 +695,6 @@
                 song.element.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
             }
 
-            // ── TOMBOL NAVIGASI ──
             function nextTrack() {
                 if (currentIdx === -1) {
                     const visible = getVisibleSongs();
@@ -740,18 +718,15 @@
             nextBtn.addEventListener('click', nextTrack);
             prevBtn.addEventListener('click', prevTrack);
 
-            // ── KLIK ITEM PLAYLIST ──
             songItems.forEach((item, idx) => {
                 item.addEventListener('click', () => playTrack(idx));
             });
 
-            // ── SEARCH INPUT ──
             searchInput.addEventListener('input', filterSongs);
             searchInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') resetSearch();
             });
 
-            // ── ERROR HANDLER ──
             player.addEventListener('error', () => {
                 const errMsg = "Gagal memuat file. Cek folder 'assets'.";
                 titleSpan.innerHTML = `⚠️ ${errMsg}`;
@@ -769,7 +744,6 @@
                 }
             });
 
-            // ── INISIALISASI ──
             resetSearch();
             player.src = "";
         })();
