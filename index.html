@@ -20,26 +20,20 @@
             justify-content: center;
             align-items: center;
             padding: 1.5rem;
-            background: linear-gradient(145deg, #0a0e1a, #0d1b2a, #1a2a3a);
-            position: relative;
-        }
-
-        /* efek grid & glow dinonaktifkan */
-        body::before,
-        body::after {
-            display: none;
+            background: #0a0e1a;
+            /* navy solid */
         }
 
         /* ── PLAYER CARD ── navy solid */
         .player-card {
             max-width: 480px;
             width: 100%;
-            background: rgba(13, 27, 42, 0.92);
-            backdrop-filter: blur(28px);
+            background: #0d1b2a;
+            /* navy gelap */
             border-radius: 3rem;
             padding: 2rem 1.8rem 1.8rem;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(60, 100, 160, 0.20);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+            border: 1px solid #1a2a3a;
             transition: transform 0.25s;
         }
 
@@ -61,10 +55,8 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            background: linear-gradient(135deg, #7a9ed4, #b0d0f0);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+            color: #b0cce8;
+            /* biru muda */
         }
 
         .player-header h1 i {
@@ -73,13 +65,13 @@
         }
 
         .badge {
-            background: rgba(60, 100, 160, 0.15);
+            background: #1a2a3a;
             padding: 0.3rem 1rem;
             border-radius: 60px;
             font-size: 0.65rem;
             font-weight: 600;
-            color: #b0cce8;
-            border: 1px solid rgba(60, 100, 160, 0.20);
+            color: #8ab0d8;
+            border: 1px solid #2a3a4a;
             display: flex;
             align-items: center;
             gap: 6px;
@@ -93,17 +85,16 @@
 
         /* ── NOW PLAYING ── */
         .now-playing-area {
-            background: rgba(20, 40, 70, 0.50);
+            background: #14243a;
             border-radius: 2rem;
             padding: 1.2rem 1.4rem;
             margin-bottom: 1.2rem;
-            border: 1px solid rgba(60, 100, 160, 0.15);
-            backdrop-filter: blur(6px);
+            border: 1px solid #1a2a3a;
             transition: border-color 0.3s;
         }
 
         .now-playing-area:hover {
-            border-color: rgba(60, 100, 160, 0.35);
+            border-color: #2a4a6a;
         }
 
         .now-label {
@@ -135,10 +126,7 @@
         }
 
         .track-title span {
-            background: linear-gradient(135deg, #d0e0f0, #a0c0e8);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+            color: #d0e0f0;
             word-break: break-word;
             line-height: 1.4;
         }
@@ -146,15 +134,15 @@
         .disc-icon {
             width: 40px;
             height: 40px;
-            background: radial-gradient(circle at 35% 35%, #4a6a9a, #0a1a3a);
+            background: radial-gradient(circle at 35% 35%, #2a4a6a, #0a1a2a);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 0 0 2px #4a7aaa, 0 0 0 5px rgba(60, 100, 160, 0.15);
+            box-shadow: 0 0 0 2px #3a5a7a, 0 0 0 5px rgba(42, 74, 106, 0.3);
             font-size: 1.1rem;
-            color: #c0d8f0;
+            color: #b0cce8;
             transition: box-shadow 0.3s;
         }
 
@@ -177,18 +165,17 @@
             margin: 0.6rem 0 0.4rem;
             border-radius: 60px;
             height: 44px;
+            background: #0a1a2a;
         }
 
         audio::-webkit-media-controls-panel {
-            background: rgba(20, 40, 70, 0.90);
+            background: #0a1a2a;
             border-radius: 60px;
-            backdrop-filter: blur(6px);
         }
 
         audio::-webkit-media-controls-play-button {
-            background-color: #4a7aaa;
+            background-color: #2a4a6a;
             border-radius: 50%;
-            transition: transform 0.2s;
         }
 
         audio::-webkit-media-controls-play-button:hover {
@@ -197,8 +184,18 @@
 
         audio::-webkit-media-controls-current-time-display,
         audio::-webkit-media-controls-time-remaining-display {
-            color: #d0e0f0;
+            color: #b0cce8;
             font-weight: 500;
+        }
+
+        audio::-webkit-media-controls-timeline {
+            background-color: #1a2a3a;
+            border-radius: 10px;
+        }
+
+        audio::-webkit-media-controls-volume-slider {
+            background-color: #1a2a3a;
+            border-radius: 10px;
         }
 
         /* ── CONTROLS ROW ── */
@@ -210,9 +207,9 @@
         }
 
         .ctrl-btn {
-            background: rgba(60, 100, 160, 0.08);
-            border: 1px solid rgba(60, 100, 160, 0.12);
-            color: #d0e0f0;
+            background: #0a1a2a;
+            border: 1px solid #1a2a3a;
+            color: #b0cce8;
             font-weight: 600;
             padding: 0.65rem 1.2rem;
             border-radius: 60px;
@@ -225,7 +222,6 @@
             flex: 1;
             justify-content: center;
             max-width: 170px;
-            backdrop-filter: blur(4px);
             letter-spacing: 0.2px;
         }
 
@@ -236,11 +232,11 @@
         }
 
         .ctrl-btn:hover {
-            background: rgba(60, 100, 160, 0.15);
-            border-color: rgba(60, 100, 160, 0.30);
+            background: #1a2a3a;
+            border-color: #2a4a6a;
             transform: translateY(-2px);
             gap: 14px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
         .ctrl-btn:hover i {
@@ -269,8 +265,8 @@
 
         #search-input {
             width: 100%;
-            background: rgba(20, 40, 70, 0.40);
-            border: 1px solid rgba(60, 100, 160, 0.12);
+            background: #0a1a2a;
+            border: 1px solid #1a2a3a;
             border-radius: 60px;
             padding: 0.8rem 1rem 0.8rem 2.8rem;
             font-size: 0.85rem;
@@ -282,13 +278,13 @@
         }
 
         #search-input:focus {
-            border-color: rgba(60, 100, 160, 0.40);
-            box-shadow: 0 0 0 4px rgba(60, 100, 160, 0.06);
-            background: rgba(20, 40, 70, 0.60);
+            border-color: #2a4a6a;
+            box-shadow: 0 0 0 4px rgba(42, 74, 106, 0.2);
+            background: #0a1a2a;
         }
 
         #search-input::placeholder {
-            color: rgba(180, 200, 230, 0.30);
+            color: rgba(160, 180, 210, 0.3);
             font-weight: 400;
         }
 
@@ -320,7 +316,7 @@
             overflow-y: auto;
             padding-right: 4px;
             scrollbar-width: thin;
-            scrollbar-color: rgba(60, 100, 160, 0.25) transparent;
+            scrollbar-color: #1a2a3a transparent;
         }
 
         .playlist-list::-webkit-scrollbar {
@@ -333,12 +329,12 @@
         }
 
         .playlist-list::-webkit-scrollbar-thumb {
-            background: rgba(60, 100, 160, 0.25);
+            background: #1a2a3a;
             border-radius: 10px;
         }
 
         .playlist-list::-webkit-scrollbar-thumb:hover {
-            background: rgba(60, 100, 160, 0.40);
+            background: #2a4a6a;
         }
 
         /* ── SONG ITEM ── */
@@ -347,14 +343,13 @@
             align-items: center;
             gap: 14px;
             padding: 0.7rem 1rem 0.7rem 1.2rem;
-            background: rgba(20, 40, 70, 0.30);
-            backdrop-filter: blur(4px);
+            background: #0a1a2a;
             margin-bottom: 8px;
             border-radius: 60px;
             cursor: pointer;
             transition: all 0.25s ease;
-            border: 1px solid rgba(60, 100, 160, 0.06);
-            color: #c0d0e0;
+            border: 1px solid #1a2a3a;
+            color: #b0cce8;
             font-weight: 500;
             font-size: 0.82rem;
             position: relative;
@@ -364,7 +359,7 @@
             width: 26px;
             text-align: center;
             font-size: 0.9rem;
-            color: rgba(60, 100, 160, 0.30);
+            color: #3a5a7a;
             transition: all 0.3s;
             flex-shrink: 0;
         }
@@ -377,21 +372,21 @@
         }
 
         .song-item:hover {
-            background: rgba(60, 100, 160, 0.10);
-            border-color: rgba(60, 100, 160, 0.20);
+            background: #14243a;
+            border-color: #2a4a6a;
             transform: translateX(4px);
-            color: #e8f0f8;
+            color: #d0e0f0;
         }
 
         .song-item:hover i {
-            color: rgba(60, 100, 160, 0.60);
+            color: #6a8cba;
         }
 
         .song-item.playing {
-            background: linear-gradient(95deg, rgba(60, 100, 160, 0.15), rgba(60, 100, 160, 0.05));
-            border-color: rgba(60, 100, 160, 0.30);
-            box-shadow: 0 0 20px rgba(60, 100, 160, 0.05);
-            color: #e8f0f8;
+            background: #14243a;
+            border-color: #2a4a6a;
+            box-shadow: 0 0 20px rgba(42, 74, 106, 0.15);
+            color: #d0e0f0;
         }
 
         .song-item.playing i {
@@ -405,7 +400,7 @@
             top: 20%;
             height: 60%;
             width: 3px;
-            background: linear-gradient(180deg, #4a7aaa, #7a9ed4);
+            background: #4a7aaa;
             border-radius: 4px;
         }
 
@@ -415,13 +410,13 @@
 
         /* ── NO RESULTS ── */
         .no-results {
-            background: rgba(20, 40, 70, 0.30);
+            background: #0a1a2a;
             border-radius: 60px;
             padding: 1.2rem;
             text-align: center;
-            color: rgba(180, 200, 230, 0.40);
+            color: rgba(160, 180, 210, 0.4);
             font-size: 0.8rem;
-            border: 1px dashed rgba(60, 100, 160, 0.15);
+            border: 1px dashed #1a2a3a;
             display: none;
             margin-top: 0.5rem;
         }
@@ -437,7 +432,7 @@
             font-size: 0.6rem;
             text-align: center;
             margin-top: 1.6rem;
-            color: rgba(180, 200, 230, 0.20);
+            color: rgba(160, 180, 210, 0.2);
             letter-spacing: 0.5px;
             display: flex;
             justify-content: center;
@@ -446,7 +441,7 @@
         }
 
         footer i {
-            color: rgba(60, 100, 160, 0.20);
+            color: rgba(106, 140, 186, 0.2);
             font-size: 0.7rem;
         }
 
